@@ -1,15 +1,21 @@
-<h1>Restaurants</h1>
+<div class="banner">
+  <h1>Restaurants</h1>
+  <%= link_to new_restaurant_path do %>
+    <div class = 'btn btn-primary'>Add a restaurant</div>
+  <% end %>
+</div>
 
-<% @restaurants.each do |restaurant| %>
-  <div>
-    <%= link_to restaurant_path(restaurant) do %>
-      <h3><%=restaurant.name%></h3>
-    <% end %>
-    <p><%= restaurant.category %> (<%= restaurant.address %>)</p>
-    <p class = 'btn btn-info'><%= link_to 'Leave a review', new_restaurant_review_path(restaurant) %></p>
-  </div>
-<% end %>
-
-<div class = 'btn btn-primary'>
-  <%= link_to 'Add a restaurant', new_restaurant_path %>
+<div class="card-container">
+  <% @restaurants.each do |restaurant| %>
+    <div class = "card">
+      <%= link_to restaurant_path(restaurant) do %>
+        <h3><%=restaurant.name%></h3>
+      <% end %>
+      <p class = "rating">Rating: <%= restaurant.average_rating %></p>
+      <p><%= restaurant.category %> (<%= restaurant.address %>)</p>
+      <%= link_to new_restaurant_review_path(restaurant) do %>
+        <div class="btn btn-info">Leave a review</div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
